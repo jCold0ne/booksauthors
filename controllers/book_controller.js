@@ -1,8 +1,10 @@
 const BookModel = require("../database/models/book_model");
+const AuthorModel = require("../database/models/author_model");
 
 async function create (req, res) {
-    let { title } = req.body;
-    let book = await BookModel.create({ title })
+    // console.log("$$$$$$$$$$$$$$$$$$$$$$$$$$")
+    let { title, author } = req.body;
+    let book = await BookModel.create({ title, author })
         .catch(err => res.status(500).send(err))
     res.redirect("/books");
 };
@@ -14,13 +16,14 @@ async function index (req, res) {
 };
 
 
-function make (req, res) {
-    res.render("book/new")
+async function make (req, res) {
+    let authors = await AuthorModel.find().select("_id name")
+    res.render("book/new", { authors })
 };
 
 async function show (req, res) {
     let { id } = req.params 
-    let book = await BookModel.findById(id) 
+    let book = await BookModel.findById(id).populate("author") 
     res.render('book/show', { book }) 
 }; 
 
@@ -38,7 +41,7 @@ async function destroy (req, res) {
 async function edit (req, res) {
     let { id } = req.params 
     let book = await BookModel.findById(id)
-    res.render("book/edit", { book }) // ???
+    res.render("book/edit", { book }) 
 };
 
 async function update (req, res) {
