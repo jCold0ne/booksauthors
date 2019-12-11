@@ -18,6 +18,6 @@ const AuthorSchema = new Schema({
     enum: ['male', 'female', 'non binary'],
     default: 'non binary'
   }
-})
+}); 
 
 module.exports = AuthorSchema // Dont forget to export the Author Schema

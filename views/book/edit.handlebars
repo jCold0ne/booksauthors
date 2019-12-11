@@ -1,0 +1,15 @@
+<h1>Edit Book</h1>
+
+
+<form method="post" action="/books/{{book.id}}?_method=PUT">
+    <div>
+        <label>Title</label>
+    </div>
+    <div>
+        <input type="text" name="name" value={{book.title}} />
+    </div>
+
+    <div>
+        <input type="submit" value="Submit Form" />
+    </div>
+</form>
