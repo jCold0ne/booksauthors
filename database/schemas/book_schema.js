@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const CommentSchema = require("./comment_schema")
 
 const BookSchema = new Schema({
     title: {
@@ -9,7 +10,8 @@ const BookSchema = new Schema({
     author: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "author"
-    }
+    },
+    comments: [CommentSchema]
 });
 
 module.exports = BookSchema; 
