@@ -10,7 +10,6 @@ async function create (req, res) {
 
 // Showed a list of all the resources
 async function index (req, res) {
-  console.log("$$$$$$$$$$$$");
   let authors = await AuthorModel.find() // Extracting all the authors from the DB
   res.render('author/index', { authors }) // Render the 'author/index view' pass it the authors
 }
